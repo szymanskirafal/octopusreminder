@@ -57,6 +57,7 @@ LOCAL_APPS = [
     'octopus.users.apps.UsersConfig',
     # Your stuff: custom apps go here
     'octopus.home',
+    'octopus.things',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

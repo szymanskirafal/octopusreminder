@@ -42,8 +42,7 @@ class TestHomeTemplateViewRedirection(TestPlusTestCase):
 
     def setUp(self):
         self.user = self.make_user()
-        self.factory = RequestFactory()
-        self.request = self.factory.get('/')
+        self.request = RequestFactory().get('/')
         self.request.user = self.user
         self.response = HomeTemplateView.as_view()(self.request)
 

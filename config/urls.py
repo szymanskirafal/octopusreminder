@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
 from octopus.home import views as home_views
+from octopus.things import views as things_views
 
 urlpatterns = [
     #url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
@@ -20,6 +21,8 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^$', home_views.HomeTemplateView.as_view(), name='home'),
+    url(r'^things/', include('octopus.things.urls', namespace='things')),
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
