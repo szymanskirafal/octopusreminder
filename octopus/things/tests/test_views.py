@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.db.models.query import QuerySet
@@ -18,11 +19,8 @@ class TestThingsNewCreateView(TestCase):
 
     def test_inheritance(self):
         view = ThingsNewCreateView
-        self.assertEqual(view.__base__, CreateView)
-
-    def test_status_code(self):
-        response = self.client.get('/things/new/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(view.__base__, LoginRequiredMixin)
+        self.assertTrue(issubclass(view, generic.CreateView))
 
     def test_view_has_template_name_attribute(self):
         view = ThingsNewCreateView
@@ -31,6 +29,66 @@ class TestThingsNewCreateView(TestCase):
     def test_view_template_name(self):
         view = ThingsNewCreateView
         self.assertEqual(view.template_name, 'things/new.html')
+
+    def test_view_fields_attribute(self):
+        view = ThingsNewCreateView
+        self.assertTrue(view.fields)
+
+    def test_view_fields_value(self):
+        view = ThingsNewCreateView
+        self.assertEqual(view.fields, ['text'])
+
+    def test_view_fields_attribute(self):
+        view = ThingsNewCreateView
+        self.assertTrue(view.success_url)
+
+    def test_view_fields_value(self):
+        view = ThingsNewCreateView
+        self.assertEqual(view.success_url, reverse('things:saved'))
+
+    def test_status_coded(self):
+        username = 'testuser'
+        password = 'testpass'
+        User = get_user_model()
+        user = User.objects.create_user(username, password=password)
+        logged_in = self.client.login(username=username, password=password)
+        self.assertTrue(logged_in)
+        response = self.client.get('/things/new/')
+        self.assertTrue(response.status_code, 200)
+
+    def test_user_create_new_thing(self):
+        username = 'testuser'
+        password = 'testpass'
+        User = get_user_model()
+        user = User.objects.create_user(username, password=password)
+        logged_in = self.client.login(username=username, password=password)
+        self.assertTrue(logged_in)
+        response = self.client.post('/things/new/', {'text':'test7'})
+        print('resp: ', response)
+        print('resp dict: ', response.__dict__)
+
+
+
+class TestThingsNewCreateViewRediretsNotAuthUsers(TestPlusTestCase):
+
+    def setUp(self):
+        self.request = RequestFactory().get('/things/new/')
+        self.request.user = AnonymousUser()
+        self.response = ThingsNewCreateView.as_view()(self.request)
+
+    def test_view_redirects_not_authenticated_users(self):
+        self.assertTrue(self.response.status_code, 302)
+
+    def test_not_authenticated_user_is_redirected_to_correct_url(self):
+        expected_url = reverse('account_login') + '?next=/things/new/'
+        given_url = self.response.url
+        self.assertEqual(expected_url, given_url)
+
+    def test_not_authenticated_user_is_redirected_to_correct_location(self):
+        expected_location = reverse('account_login') + '?next=/things/new/'
+        given_location = self.response['location']
+        self.assertEqual(expected_location, given_location)
+
 
 
 class TestThingsListViewAttributes(TestCase):
@@ -179,7 +237,7 @@ class TestThingsDetailView(TestCase):
         context_object_name_expected = 'thing'
         context_object_name_given = ThingsDetailView.context_object_name
         self.assertEqual(context_object_name_expected, context_object_name_given)
-    
+
 
 class TestDetailViewForNotAuthenticatedUsers(TestPlusTestCase):
 

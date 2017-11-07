@@ -6,13 +6,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Thing
 
 
-class ThingsNewCreateView(generic.CreateView):
+class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
     model = Thing
     fields = ['text']
     template_name = 'things/new.html'
-    # These next two lines tell the view to index lookups by username
-    #slug_field = 'username'
-    #slug_url_kwarg = 'username'
+    success_url = '/things/thing-saved/'
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        return super(ThingsNewCreateView, self).form_valid(form)
+
+        
 
 class ThingsListView(LoginRequiredMixin, generic.ListView):
     model = Thing
@@ -28,7 +32,7 @@ class ThingsDetailView(LoginRequiredMixin, generic.DetailView):
     model = Thing
     template_name = 'things/detail.html'
     context_object_name = 'thing'
-    
+
 
 class ThingsThingSavedTemplateView(generic.TemplateView):
     template_name = 'things/thing-saved.html'

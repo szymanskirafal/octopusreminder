@@ -55,11 +55,11 @@ class TestHomeTemplateViewRedirection(TestPlusTestCase):
         self.assertEqual(self.response.status_code, 302)
 
     def test_authenticated_user_is_redirected_to_correct_url(self):
-        expected_url = reverse('about')
+        expected_url = reverse('things:new')
         given_url = self.response.url
         self.assertEqual(expected_url, given_url)
 
     def test_authenticated_user_is_redirected_to_correct_location(self):
-        expected_location = reverse('about')
+        expected_location = reverse('things:new')
         given_location = self.response['location']
         self.assertEqual(expected_location, given_location)

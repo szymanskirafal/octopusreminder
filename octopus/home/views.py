@@ -6,6 +6,6 @@ class HomeTemplateView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return redirect('about')
+            return redirect('things:new')
         else:
             return super(HomeTemplateView, self).get(request, *args, **kwargs)
