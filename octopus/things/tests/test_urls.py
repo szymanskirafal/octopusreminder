@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase
 
 from ..views import *
-#ThingsListView
+
 
 class TestThingsNewUrl(TestCase):
     def test_url_reverse(self):
@@ -63,6 +63,25 @@ class TestThingsDetailUrl(TestCase):
     def test_url_calls_proper_name_of_view(self):
         view_name_called = resolve('/things/detail/1/').view_name
         view_name_expected = 'things:detail'
+        self.assertEqual(view_name_called, view_name_expected)
+
+class TestThingsEditUrl(TestCase):
+
+    def test_url_resolve(self):
+        self.assertEqual(resolve('/things/edit/1/').view_name, 'things:edit')
+
+    def test_url_reverse(self):
+        self.assertEqual(reverse('things:edit', args=[1]), '/things/edit/1/')
+
+    def test_url_calls_proper_class_of_view(self):
+        match = resolve('/things/edit/1/')
+        class_view_called = match.func.__dict__['view_class']
+        expected_class_of_view = ThingsEditUpdateView().__class__
+        self.assertEqual(class_view_called, expected_class_of_view)
+
+    def test_url_calls_proper_name_of_view(self):
+        view_name_called = resolve('/things/edit/1/').view_name
+        view_name_expected = 'things:edit'
         self.assertEqual(view_name_called, view_name_expected)
 
 class TestThingsThingSavedUrl(TestCase):

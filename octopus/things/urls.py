@@ -19,6 +19,11 @@ urlpatterns = [
         name='detail'
     ),
     url(
+        regex=r'^edit/(?P<pk>\d+)/$',
+        view=views.ThingsEditUpdateView.as_view(),
+        name='edit'
+    ),
+    url(
         regex=r'^thing-saved/$',
         view=views.ThingsThingSavedTemplateView.as_view(),
         name='saved'

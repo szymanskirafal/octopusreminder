@@ -38,6 +38,14 @@ class TestThingsNewCreateView(TestCase):
         view = ThingsNewCreateView
         self.assertEqual(view.fields, ['text'])
 
+    def test_view_context_object_name_attribute(self):
+        view = ThingsNewCreateView
+        self.assertTrue(view.context_object_name)
+
+    def test_view_context_object_name_value(self):
+        view = ThingsNewCreateView
+        self.assertEqual(view.context_object_name, 'thing')
+
     def test_view_fields_attribute(self):
         view = ThingsNewCreateView
         self.assertTrue(view.success_url)
@@ -56,16 +64,16 @@ class TestThingsNewCreateView(TestCase):
         response = self.client.get('/things/new/')
         self.assertTrue(response.status_code, 200)
 
-    def test_user_create_new_thing(self):
-        username = 'testuser'
-        password = 'testpass'
-        User = get_user_model()
-        user = User.objects.create_user(username, password=password)
-        logged_in = self.client.login(username=username, password=password)
-        self.assertTrue(logged_in)
-        response = self.client.post('/things/new/', {'text':'test7'})
-        print('resp: ', response)
-        print('resp dict: ', response.__dict__)
+    #def test_user_create_new_thing(self):
+    #    username = 'testuser'
+    #    password = 'testpass'
+    #    User = get_user_model()
+    #    user = User.objects.create_user(username, password=password)
+    #    logged_in = self.client.login(username=username, password=password)
+    #    self.assertTrue(logged_in)
+    #    response = self.client.post('/things/new/', {'text':'test7'})
+        #self.assertEqual(response.context['thing'], 'test7' )
+        #self.assertTrue('test7' in response.context)
 
 
 

@@ -10,13 +10,14 @@ class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
     model = Thing
     fields = ['text']
     template_name = 'things/new.html'
+    context_object_name = 'thing'
     success_url = '/things/thing-saved/'
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
         return super(ThingsNewCreateView, self).form_valid(form)
 
-        
+
 
 class ThingsListView(LoginRequiredMixin, generic.ListView):
     model = Thing
@@ -33,6 +34,12 @@ class ThingsDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = 'things/detail.html'
     context_object_name = 'thing'
 
+class ThingsEditUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+    model = Thing
+    fields = ['text']
+    template_name = 'things/edit.html'
+    context_object_name = 'thing'
+    success_url = '/things/thing-saved/'
 
 class ThingsThingSavedTemplateView(generic.TemplateView):
     template_name = 'things/thing-saved.html'
