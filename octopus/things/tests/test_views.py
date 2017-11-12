@@ -246,6 +246,19 @@ class TestThingsDetailView(TestCase):
         context_object_name_given = ThingsDetailView.context_object_name
         self.assertEqual(context_object_name_expected, context_object_name_given)
 
+class TestUserWantToCheckOtherUserThing(TestCase):
+
+    def test_user_is_not_allowed_to_see_thing_other_user_created(self):
+        User = get_user_model()
+        user1 = User.objects.create_user(username='andy', password='haslo')
+        user2 = User.objects.create_user(username='joe', password='pass')
+        thing1 = Thing.objects.create(text='text1', created_by = user1)
+        thing2 = Thing.objects.create(text='text2', created_by = user2)
+        print('---------- thing1: ', thing1, thing1.created_by, thing1.pk)
+        print('---------- thing2: ', thing2, thing2.created_by, thing2.pk)
+        logged_in = self.client.login(username='joe', password='pass')
+        response = self.client.get('/things/detail', kwargs={'pk':3})
+        self.assertEqual(response.status_code, 404)
 
 class TestDetailViewForNotAuthenticatedUsers(TestPlusTestCase):
 
@@ -272,21 +285,40 @@ class TestThingsDetailViewForAuthenticatedUsers(TestPlusTestCase):
 
     def setUp(self):
         self.user = self.make_user()
-        self.request = RequestFactory().get('/things/detail/1/')
+        self.request = RequestFactory().get('/things/detail/5/')
         self.request.user = self.user
 
     def test_status_code(self):
         thing = Thing.objects.create(text='test1', created_by=self.user)
-        response = ThingsDetailView.as_view()(self.request, pk=3)
+        print('-------------- again --- ', thing, thing.pk, thing.created_by)
+        response = ThingsDetailView.as_view()(self.request, pk=5)
         self.assertEqual(response.status_code, 200)
 
     def test_zobject(self):
         thing = Thing.objects.create(text='test1', created_by=self.user)
-        response = ThingsDetailView.as_view()(self.request, pk=4)
+        response = ThingsDetailView.as_view()(self.request, pk=6)
         obj = response.context_data['object']
         self.assertEqual(obj.text, 'test1')
-        self.assertEqual(obj.pk, 4)
+        self.assertEqual(obj.pk, 6)
         self.assertEqual(obj.created_by.username, 'testuser')
+
+class TestThingDetailRestrictedOnlyForCreator(TestPlusTestCase):
+
+    def test_user_can_not_see_details_of_objects_created_by_other_users(self):
+        audrey = self.make_user(username = 'audrey')
+        donna = self.make_user(username = 'donna')
+        thing1 = Thing.objects.create(text='text_by_Audrey', created_by = audrey)
+        thing2 = Thing.objects.create(text='text_by_Donna', created_by = donna)
+        print('---------- th1: ', thing1, thing1.pk, thing1.created_by)
+        print('---------- th2: ', thing2, thing2.pk, thing2.created_by)
+        request = RequestFactory().get('things/detail/3/')
+        request.user = donna
+        #response = ThingsDetailView.as_view()(request, pk=3)
+        print('---------------  rsp ---------------')
+        #print(response)
+        #print(response.status_code)
+        #self.assertEqual(response.status_code, 302)
+        #print('chyba ok')
 
 
 class TestThingsListViewQuery(TestPlusTestCase):
