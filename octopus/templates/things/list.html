@@ -3,7 +3,7 @@
 {% block content %}
   <h1>List of things</h1>
   {% for thing in things %}
-    <p>{{ thing }} <a href="{{ thing.get_absolut_url }}"</p>
+    <p><a href="{{ thing.get_absolut_url }}">{{ thing }}</a></p>
 
   {% endfor %}
 

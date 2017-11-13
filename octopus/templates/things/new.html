@@ -3,7 +3,9 @@
 {% block content %}
   <h1>New thing</h1>
   <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save" />
+    <div class="form-group">
+      {{ form }}
+    </div>
+    <input type="submit" value="Save" class="btn btn-primary"/>
   </form>
 {% endblock content %}

@@ -1,16 +1,18 @@
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views import generic
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .forms import ThingForm
 from .models import Thing
 
 
 class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
     model = Thing
-    fields = ['text']
+    form_class = ThingForm
     template_name = 'things/new.html'
     context_object_name = 'thing'
     success_url = '/things/thing-saved/'
@@ -40,10 +42,15 @@ class ThingsDetailView(LoginRequiredMixin, QueryCreatedByCurrentUserMixin, gener
 
 class ThingsEditUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     model = Thing
-    fields = ['text']
+    form_class = ThingForm
     template_name = 'things/edit.html'
     context_object_name = 'thing'
     success_url = '/things/thing-saved/'
 
 class ThingsThingSavedTemplateView(generic.TemplateView):
     template_name = 'things/thing-saved.html'
+
+class ThingsDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+    model = Thing
+    context_object_name = 'thing'
+    success_url = reverse_lazy('things:list')

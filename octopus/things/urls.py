@@ -28,5 +28,10 @@ urlpatterns = [
         view=views.ThingsThingSavedTemplateView.as_view(),
         name='saved'
     ),
+    url(
+        regex=r'^delete/(?P<pk>\d+)/$',
+        view=views.ThingsDeleteView.as_view(),
+        name='delete'
+    ),
 
 ]
