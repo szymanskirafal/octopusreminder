@@ -3,9 +3,6 @@
 {% block content %}
   <h1>New thing</h1>
   <form action="" method="post">{% csrf_token %}
-    <div class="form-group">
-      {{ form }}
-    </div>
-    <input type="submit" value="Save" class="btn btn-primary"/>
+    {% include 'things/create-or-edit-form.html' %}
   </form>
 {% endblock content %}

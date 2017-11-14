@@ -3,8 +3,8 @@
 {% block content %}
   <h1>Thing</h1>
   <p>{{ thing.text }}</P>
-  <a class="btn btn-outline-primary" href="{% url 'things:edit' thing.pk %}" role="button">Edit</a>
-  <a class="btn btn-outline-danger" href="{% url 'things:delete' thing.pk %}" role="button">Delete</a>
+  <a class="btn btn-outline-primary btn-lg" href="{% url 'things:edit' thing.pk %}" role="button">Edit</a>
+  <a class="btn btn-outline-danger btn-lg" href="{% url 'things:delete' thing.pk %}" role="button">Delete</a>
 
 
 {% endblock content %}
