@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import redirect
@@ -19,6 +20,7 @@ class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
+        send_mail('email test', 'Just trying mailgun email', 'octopus@octopusreminder', ['r.szymansky@gmail.com'])
         return super(ThingsNewCreateView, self).form_valid(form)
 
 class QueryCreatedByCurrentUserMixin(object):

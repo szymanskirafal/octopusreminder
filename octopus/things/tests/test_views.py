@@ -64,18 +64,6 @@ class TestThingsNewCreateView(TestCase):
         response = self.client.get('/things/new/')
         self.assertTrue(response.status_code, 200)
 
-    #def test_user_create_new_thing(self):
-    #    username = 'testuser'
-    #    password = 'testpass'
-    #    User = get_user_model()
-    #    user = User.objects.create_user(username, password=password)
-    #    logged_in = self.client.login(username=username, password=password)
-    #    self.assertTrue(logged_in)
-    #    response = self.client.post('/things/new/', {'text':'test7'})
-        #self.assertEqual(response.context['thing'], 'test7' )
-        #self.assertTrue('test7' in response.context)
-
-
 
 class TestThingsNewCreateViewRediretsNotAuthUsers(TestPlusTestCase):
 
@@ -254,8 +242,6 @@ class TestUserWantToCheckOtherUserThing(TestCase):
         user2 = User.objects.create_user(username='joe', password='pass')
         thing1 = Thing.objects.create(text='text1', created_by = user1)
         thing2 = Thing.objects.create(text='text2', created_by = user2)
-        print('---------- thing1: ', thing1, thing1.created_by, thing1.pk)
-        print('---------- thing2: ', thing2, thing2.created_by, thing2.pk)
         logged_in = self.client.login(username='joe', password='pass')
         response = self.client.get('/things/detail', kwargs={'pk':3})
         self.assertEqual(response.status_code, 404)
@@ -290,7 +276,6 @@ class TestThingsDetailViewForAuthenticatedUsers(TestPlusTestCase):
 
     def test_status_code(self):
         thing = Thing.objects.create(text='test1', created_by=self.user)
-        print('-------------- again --- ', thing, thing.pk, thing.created_by)
         response = ThingsDetailView.as_view()(self.request, pk=5)
         self.assertEqual(response.status_code, 200)
 
@@ -309,12 +294,9 @@ class TestThingDetailRestrictedOnlyForCreator(TestPlusTestCase):
         donna = self.make_user(username = 'donna')
         thing1 = Thing.objects.create(text='text_by_Audrey', created_by = audrey)
         thing2 = Thing.objects.create(text='text_by_Donna', created_by = donna)
-        print('---------- th1: ', thing1, thing1.pk, thing1.created_by)
-        print('---------- th2: ', thing2, thing2.pk, thing2.created_by)
         request = RequestFactory().get('things/detail/3/')
         request.user = donna
         #response = ThingsDetailView.as_view()(request, pk=3)
-        print('---------------  rsp ---------------')
         #print(response)
         #print(response.status_code)
         #self.assertEqual(response.status_code, 302)
