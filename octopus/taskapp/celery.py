@@ -24,9 +24,9 @@ class CeleryConfig(AppConfig):
         installed_apps = [app_config.name for app_config in apps.get_app_configs()]
         app.autodiscover_tasks(lambda: installed_apps, force=True)
 
-        
 
-        
+
+
 
 
 @app.task(bind=True)
