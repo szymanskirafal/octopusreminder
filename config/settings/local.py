@@ -74,5 +74,5 @@ CELERY_ALWAYS_EAGER = True
 EMAIL_HOST = 'smtp.mailgun.org'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'postmaster@mg.octopusreminder.com'
-EMAIL_HOST_PASSWORD = env('MAILGUN_SMTP_PASSWORD', default='RuUqKtFSbTFAd6TrDBvNjf5')
+EMAIL_HOST_PASSWORD = env('MAILGUN_SMTP_PASSWORD', default='4rfvcxzaq123')
 EMAIL_USE_TLS = True
