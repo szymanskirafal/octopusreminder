@@ -12,5 +12,5 @@ def thing_second_task():
 
 
 @shared_task
-def test():
-    print('---------------- hej its test task  ----------------')
+def test(one, two):
+    print('---------------- hej its test task with nbrs: ', one, two)

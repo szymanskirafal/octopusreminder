@@ -23,7 +23,7 @@ class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.created_by = self.request.user
         w = thing_task_print.delay()
         e = thing_second_task.delay()
-        t = test.delay()
+        t = test.delay(4,3)
         #send_mail('email test', 'Just trying mailgun email', 'octopus@octopusreminder.com', ['r.szymansky@gmail.com'])
         return super(ThingsNewCreateView, self).form_valid(form)
 
