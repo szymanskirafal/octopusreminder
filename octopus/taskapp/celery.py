@@ -13,7 +13,7 @@ if not settings.configured:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')  # pragma: no cover
 
 
-app = Celery('octopus', broker='pyamqp://guest@localhost//')
+app = Celery('octopus')
 
 
 class CeleryConfig(AppConfig):
@@ -31,6 +31,12 @@ class CeleryConfig(AppConfig):
 @app.task(bind=True)
 def debug_task(self):
     print('Request: {0!r}'.format(self.request))  # pragma: no cover
+
+@app.task
+def task_num(one):
+    print('-----hej task_num here !')
+    num = one + 1
+    return num
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):

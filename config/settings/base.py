@@ -270,9 +270,13 @@ AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
 
 ########## CELERY
 INSTALLED_APPS += ['octopus.taskapp.celery.CeleryConfig']
-CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='django://')
-if CELERY_BROKER_URL == 'django://':
-    CELERY_RESULT_BACKEND = 'redis://'
+CELERY_BROKER_URL = env('CELERY_BROKER_URL', default='amqp://localhost')
+#django://')
+if CELERY_BROKER_URL == 'amqp://localhost':
+#'django://':
+    CELERY_RESULT_BACKEND = 'rpc://'
+
+#redis://'
 else:
     CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 ########## END CELERY

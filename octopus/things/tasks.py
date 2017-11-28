@@ -12,5 +12,7 @@ def thing_second_task():
 
 
 @shared_task
-def test(one, two):
+def task_numbers(one, two):
     print('---------------- hej its test task with nbrs: ', one, two)
+    numbers = [one, two]
+    return numbers
