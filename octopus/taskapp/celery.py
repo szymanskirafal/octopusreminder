@@ -8,6 +8,7 @@ from django.conf import settings
 
 
 
+
 if not settings.configured:
     # set the default Django settings module for the 'celery' program.
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.local')  # pragma: no cover
@@ -32,26 +33,11 @@ class CeleryConfig(AppConfig):
 def debug_task(self):
     print('Request: {0!r}'.format(self.request))  # pragma: no cover
 
-@app.task
-def task_num(one):
-    print('-----hej task_num here !')
-    num = one + 1
-    return num
+from celery.schedules import crontab
+app.conf.beat_schedule = {
+    'add-every-minute-contrab': {
+        'task': 'octopus.things.tasks.task_send_email',
+        'schedule': crontab(),
 
-@app.on_after_configure.connect
-def setup_periodic_tasks(sender, **kwargs):
-    sender.add_periodic_task(10.0, thing_task_print.s())
-
-@app.on_after_configure.connect
-def setup_periodic_tasks(sender, **kwargs):
-    # Calls test('hello') every 10 seconds.
-    sender.add_periodic_task(10.0, test.s('hello'), name='add every 10')
-
-    # Calls test('world') every 30 seconds
-    sender.add_periodic_task(30.0, test.s('world'), expires=10)
-
-    # Executes every Monday morning at 7:30 a.m.
-    sender.add_periodic_task(
-        crontab(hour=7, minute=30, day_of_week=1),
-        test.s('Happy Mondays!'),
-    )
+    },
+}

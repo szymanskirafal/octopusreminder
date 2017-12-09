@@ -1,18 +1,14 @@
+from django.core.mail import send_mail
+
 from celery import shared_task
-
-@shared_task
-def thing_task_print():
-    print('---------------- hej its celery task here ----------------')
+from celery.schedules import crontab
 
 
 
-@shared_task
-def thing_second_task():
-    print('---------------- hej its second task  ----------------')
+
+
 
 
 @shared_task
-def task_numbers(one, two):
-    print('---------------- hej its test task with nbrs: ', one, two)
-    numbers = [one, two]
-    return numbers
+def task_send_email():
+    send_mail('email test', 'Just trying celery and mailgun', 'octopus@octopusreminder.com', ['r.szymansky@gmail.com'])

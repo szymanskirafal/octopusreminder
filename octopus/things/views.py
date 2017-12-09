@@ -7,11 +7,10 @@ from django.views import generic
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from ..taskapp.celery import task_num
 
 from .forms import ThingForm
 from .models import Thing
-from .tasks import task_numbers, thing_second_task, thing_task_print
+from .tasks import *
 
 
 class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
@@ -23,10 +22,9 @@ class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
-        #w = thing_task_print.delay()
-        #e = thing_second_task.delay()
-        task_num.delay(2)
-        task_numbers.delay(4,3)
+
+        
+
         #send_mail('email test', 'Just trying mailgun email', 'octopus@octopusreminder.com', ['r.szymansky@gmail.com'])
         return super(ThingsNewCreateView, self).form_valid(form)
 
