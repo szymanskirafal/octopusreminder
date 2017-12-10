@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>List of things</h1>
+  {% for thing in things %}
+    <h2><a href="{{ thing.get_absolut_url }}">{{ thing }}</a></h2>
+
+  {% endfor %}
+
+{% endblock content %}
