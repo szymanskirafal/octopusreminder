@@ -2,33 +2,16 @@
 
 {% block content %}
   <h1>Today</h1>
-  <hr>
-  {% for thing in things %}
-
-
-    <h2>{{ thing }}
-      <a class="btn btn-outline-secondary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Manage</a>
-    </h2>
-
-
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body">
-        Manage this item.
-        <div class="row">
-          <div class="col-2">
-            <a class="btn btn-outline-primary btn-lg" href="{% url 'things:edit' thing.pk %}" role="button">Edit</a>
-          </div>
-          <div class="col-2">
-            <a class="btn btn-outline-danger btn-lg" href="{% url 'things:delete' thing.pk %}" role="button">Delete</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  {% for thing in today_things %}
+    <p>{{ thing }}   <a href="{% url 'things:edit' thing.pk %}" class="btn btn-outline-primary role="button"">?</a></p>
 
   {% endfor %}
   <br>
-  <h1>Other day</h1>
-  <hr>
+  <h1>Later</h1>
+  {% for thing in later_things %}
+    <p>{{ thing }}   <a href="{% url 'things:edit' thing.pk %}" class="btn btn-outline-primary role="button"">?</a></p>
+
+  {% endfor %}
 
 {% endblock content %}
+{{ thing.get_absolut_url }}

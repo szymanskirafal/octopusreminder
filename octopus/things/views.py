@@ -18,12 +18,12 @@ class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = ThingForm
     template_name = 'things/new.html'
     context_object_name = 'thing'
-    success_url = '/things/thing-saved/'
+    success_url = '/things/list/'
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
 
-        
+
 
         #send_mail('email test', 'Just trying mailgun email', 'octopus@octopusreminder.com', ['r.szymansky@gmail.com'])
         return super(ThingsNewCreateView, self).form_valid(form)
@@ -38,7 +38,15 @@ class QueryCreatedByCurrentUserMixin(object):
 class ThingsListView(LoginRequiredMixin, QueryCreatedByCurrentUserMixin, generic.ListView):
     model = Thing
     template_name = 'things/list.html'
-    context_object_name = 'things'
+    #context_object_name = 'things'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        queryset = self.get_queryset()
+        context['today_things'] = queryset.filter(today = True)
+        context['later_things'] = queryset.filter(today = False)
+        return context
+
 
 
 class ThingsDetailView(LoginRequiredMixin, QueryCreatedByCurrentUserMixin, generic.DetailView):
@@ -52,7 +60,7 @@ class ThingsEditUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
     form_class = ThingForm
     template_name = 'things/edit.html'
     context_object_name = 'thing'
-    success_url = '/things/thing-saved/'
+    success_url = '/things/list/'
 
 class ThingsThingSavedTemplateView(generic.TemplateView):
     template_name = 'things/thing-saved.html'

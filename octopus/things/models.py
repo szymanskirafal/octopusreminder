@@ -13,6 +13,7 @@ class TimeStampedModel(models.Model):
 class Thing(TimeStampedModel):
     text = models.CharField(max_length = 200)
     created_by = models.ForeignKey(User)
+    today = models.BooleanField(default = True)
 
     def __str__(self):
         return self.text

@@ -1,11 +1,11 @@
-from django.forms import ModelForm, Textarea
+from django.forms import CheckboxInput, ModelForm, Textarea
 from .models import Thing
 
 
 class ThingForm(ModelForm):
     class Meta:
         model = Thing
-        fields = ['text']
+        fields = ['text', 'today']
         labels = {
             'text': '',
         }
@@ -15,6 +15,12 @@ class ThingForm(ModelForm):
                     'class': 'form-control',
                     'placeholder': ' type here...',
                     'autofocus': '',
+
+                }
+            ),
+            'today': CheckboxInput(
+                attrs={
+                    'class': 'form-control',
 
                 }
             ),
