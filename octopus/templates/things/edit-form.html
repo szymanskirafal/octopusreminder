@@ -1,5 +1,7 @@
 <div class="form-group">
   {{ form.as_p }}
+
   <input type="submit" value="Save" class="btn btn-outline-primary btn-lg"/>
 </div>
+
 <a class="btn btn-outline-danger btn-lg" href="{% url 'things:delete' thing.pk %}" role="button">Delete</a>

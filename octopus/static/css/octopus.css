@@ -1,1 +1,5 @@
 .navbar, .navbar-toggler { border: none; }
+
+.octopus-circle {
+  border-radius: 50%;
+}

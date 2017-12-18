@@ -3,13 +3,29 @@
 {% block content %}
   <h1>Today</h1>
   {% for thing in today_things %}
-    <p>{{ thing }}   <a href="{% url 'things:edit' thing.pk %}" class="btn btn-outline-primary role="button"">?</a></p>
+    <div class="row">
+      <div class="col-10">
+        <p>{{ thing }}</p>
+      </div>
+      <div class="col-2">
+        <p><a href="{% url 'things:edit' thing.pk %}" class="btn btn-outline-primary octopus-circle" role="button">?</a></p>
+      </div>
+    </div>
+    <hr>
 
   {% endfor %}
   <br>
   <h1>Later</h1>
   {% for thing in later_things %}
-    <p>{{ thing }}   <a href="{% url 'things:edit' thing.pk %}" class="btn btn-outline-primary role="button"">?</a></p>
+    <div class="row">
+      <div class="col-10">
+        <p>{{ thing }}</p>
+      </div>
+      <div class="col-2">
+        <p><a href="{% url 'things:edit' thing.pk %}" class="btn btn-outline-primary octopus-circle" role="button">?</a></p>
+      </div>
+    </div>
+    <hr>
 
   {% endfor %}
 
