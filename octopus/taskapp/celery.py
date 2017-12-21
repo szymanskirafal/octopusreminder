@@ -37,7 +37,7 @@ from celery.schedules import crontab
 app.conf.beat_schedule = {
     'add-every-minute-contrab': {
         'task': 'octopus.things.tasks.task_send_email',
-        'schedule': crontab(),
+        'schedule': crontab(hour=8, minute=0),
 
     },
 }
