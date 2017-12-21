@@ -3,6 +3,10 @@ h1 {
   margin-bottom: 1em;
 }
 
+p {
+  font-size: 1.5em;
+}
+
 .navbar, .navbar-toggler { border: none; }
 
 .octopus-circle {
