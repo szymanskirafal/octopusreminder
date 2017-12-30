@@ -8,6 +8,7 @@ class ThingForm(ModelForm):
         fields = ['text', 'today']
         labels = {
             'text': '',
+            'today': 'ggg',
         }
         widgets = {
             'text': Textarea(
@@ -20,7 +21,7 @@ class ThingForm(ModelForm):
             ),
             'today': CheckboxInput(
                 attrs={
-                    'class': 'form-control',
+                    'class': 'form-check-input',
 
                 }
             ),
