@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import ThingForm
 from .models import Thing
-from .tasks import *
+
 
 
 class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
@@ -22,10 +22,6 @@ class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.created_by = self.request.user
-
-
-
-        #send_mail('email test', 'Just trying mailgun email', 'octopus@octopusreminder.com', ['r.szymansky@gmail.com'])
         return super(ThingsNewCreateView, self).form_valid(form)
 
 class QueryCreatedByCurrentUserMixin(object):
