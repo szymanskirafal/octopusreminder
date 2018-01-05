@@ -8,7 +8,7 @@ class ThingForm(ModelForm):
         fields = ['text', 'today']
         labels = {
             'text': '',
-            'today': 'ggg',
+
         }
         widgets = {
             'text': Textarea(

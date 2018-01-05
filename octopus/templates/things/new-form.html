@@ -1,7 +1,21 @@
 <div class="form-group">
   {{ form.text }}
+
 </div>
-<div class="form-check">
-  {{ form.today }}
+
+<div class="form-group">
+  <div class="form-check">
+    <div class ="row">
+      <div class="col-1">
+        {{ form.today.label }}
+      </div>
+      <div class="col-1">
+        {{ form.today }}
+      </div>
+    </div>
+
+  </div>
 </div>
+
+
 <button type="submit" value="Save" class="btn btn-outline-primary btn-lg">Save</button>
