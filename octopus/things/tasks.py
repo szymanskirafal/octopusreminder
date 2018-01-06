@@ -21,8 +21,8 @@ def task_send_email():
     html_content = render_to_string('templates/things/email.html', {'things': list_of_things})
     from_email = 'octopus@octopusreminder.com'
     to = 'r.szymansky@gmail.com'
-    msg = EmailMessage(subject, html_content, from_email, [to])
-    msg.content_subtype = "html"
-    msg.send()
+    email = EmailMessage(subject, html_content, from_email, [to])
+    email.content_subtype = "html"
+    email.send()
 
     #send_mail('Octopus', 'Trying again celery and mailgun', 'octopus@octopusreminder.com', ['r.szymansky@gmail.com'])

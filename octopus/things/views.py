@@ -34,8 +34,7 @@ class QueryCreatedByCurrentUserMixin(object):
 class ThingsListView(LoginRequiredMixin, QueryCreatedByCurrentUserMixin, generic.ListView):
     model = Thing
     template_name = 'things/list.html'
-    #context_object_name = 'things'
-
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         queryset = self.get_queryset()
