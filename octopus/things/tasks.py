@@ -16,7 +16,7 @@ from ..users.models import User
 @shared_task
 def task_send_email():
     user = User.objects.get(email = 'szymanski_rafal@icloud.com')
-    list_of_things = Things.objects.all().filter(created_by = user)
+    list_of_things = Thing.objects.all().filter(created_by = user)
     subject = 'List of things to remember'
     html_content = render_to_string('templates/things/email.html', {'things': list_of_things})
     from_email = 'octopus@octopusreminder.com'
