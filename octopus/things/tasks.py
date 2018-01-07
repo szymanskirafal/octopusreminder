@@ -15,9 +15,9 @@ from ..users.models import User
 
 @shared_task
 def task_send_email():
-    user = User.objects.get(email = 'szymanski_rafal@icloud.com')
+    user = User.objects.get(username = 'szymanski')
     list_of_things = Thing.objects.all().filter(created_by = user)
-    today_tings = list_of_things.filter(today = True)
+    today_things = list_of_things.filter(today = True)
     later_things = list_of_things.filter(today = False)
     subject = 'List of things to remember'
     html_content = render_to_string('things/email.html', {'today_things': today_things, 'later_things': later_things})
