@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+
   <h1>Edit thing</h1>
   <form action="" method="post">{% csrf_token %}
     {% include 'things/edit-form.html' %}
   </form>
+  
 {% endblock content %}

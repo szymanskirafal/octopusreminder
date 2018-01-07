@@ -20,9 +20,7 @@ def task_send_email():
     today_tings = list_of_things.filter(today = True)
     later_things = list_of_things.filter(today = False)
     subject = 'List of things to remember'
-    html_content = render_to_string('things/email.html', {
-        'today_things': today_things,
-        'later_things': later_things})
+    html_content = render_to_string('things/email.html', {'today_things': today_things, 'later_things': later_things})
     from_email = 'octopus@octopusreminder.com'
     to = 'r.szymansky@gmail.com'
     email = EmailMessage(subject, html_content, from_email, [to])

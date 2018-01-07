@@ -8,6 +8,7 @@ class ThingForm(ModelForm):
         fields = ['text', 'today']
         labels = {
             'text': '',
+            'today': 'Today',
 
         }
         widgets = {
@@ -21,7 +22,7 @@ class ThingForm(ModelForm):
             ),
             'today': CheckboxInput(
                 attrs={
-                    'class': 'form-check-input',
+                    'class': 'btn btn-secondary',
 
                 }
             ),
