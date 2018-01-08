@@ -37,7 +37,7 @@ from celery.schedules import crontab
 app.conf.beat_schedule = {
     'send-list-of-things-to-remember': {
         'task': 'octopus.things.tasks.task_send_email',
-        'schedule': crontab(minute='0', hour='6,12,15,19,22'),
+        'schedule': crontab(minute='0', hour='6,11,14,19'),
 
 
     },
