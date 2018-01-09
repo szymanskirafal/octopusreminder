@@ -1,9 +1,8 @@
-<h1>Remember about</h1>
-<h2>Today</h2>
+<h1>Today</h1>
 {% for thing in today_things %}
-  <p>{{ thing }} <a href="https://octopusreminder.com{% url 'things:detail' thing.pk %}">Click</a></p>
+  <p>{{ thing }} <a href="https://octopusreminder.com{{ thing.get_absolut_url }}">Edit</a></p>
 {% endfor %}
-<h2>Later</h2>
+<h1>Later</h1>
 {% for thing in later_things %}
-  <p>{{ thing }} <a href="https://octopusreminder.com{% url 'things:detail' thing.pk %}">Click</a></p>
+  <p>{{ thing }} <a href="https://octopusreminder.com{{ thing.get_absolut_url }}">Edit</a></p>
 {% endfor %}
