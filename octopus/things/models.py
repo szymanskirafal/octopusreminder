@@ -11,7 +11,7 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 class Thing(TimeStampedModel):
-    text = models.CharField(max_length = 200)
+    text = models.CharField(max_length = 500)
     created_by = models.ForeignKey(User)
     today = models.BooleanField(default = True)
 
@@ -22,4 +22,4 @@ class Thing(TimeStampedModel):
         return reverse('things:detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']
