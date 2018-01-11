@@ -49,7 +49,7 @@ class TestThing(TestCase):
         self.assertEqual(class_expected, class_given)
 
     def test_field_max_length(self):
-        max_length_expected = 200
+        max_length_expected = 500
         field = Thing._meta.get_field('text')
         max_length_given = field.max_length
         self.assertEqual(max_length_expected, max_length_given)
@@ -75,7 +75,7 @@ class TestThing(TestCase):
         self.assertEqual(str(thing), 'test1')
 
     def test_ordering(self):
-        self.assertEqual(Thing._meta.ordering, ['created'])
+        self.assertEqual(Thing._meta.ordering, ['-created'])
 
     def test_get_absolut_url(self):
         user = User.objects.create(name='joe')

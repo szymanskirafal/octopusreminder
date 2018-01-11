@@ -52,7 +52,7 @@ class TestThingsNewCreateView(TestCase):
 
     def test_view_fields_value(self):
         view = ThingsNewCreateView
-        self.assertEqual(view.success_url, reverse('things:saved'))
+        self.assertEqual(view.success_url, reverse('things:list'))
 
     def test_status_coded(self):
         username = 'testuser'
@@ -111,15 +111,8 @@ class TestThingsListViewAttributes(TestCase):
         view = ThingsListView
         self.assertEqual(view.template_name, 'things/list.html')
 
-    def test_view_has_context_object_name_attribute(self):
-        self.assertTrue(ThingsListView.context_object_name)
 
-    def test_context_object_name(self):
-        context_object_name_expected = 'things'
-        context_object_name_given = ThingsListView.context_object_name
-        self.assertEqual(context_object_name_expected, context_object_name_given)
-
-
+    
 class TestListViewRediretsNotAuthUsers(TestPlusTestCase):
 
     def setUp(self):
@@ -226,13 +219,6 @@ class TestThingsDetailView(TestCase):
         view = ThingsDetailView
         self.assertEqual(view.template_name, 'things/detail.html')
 
-    def test_view_has_context_object_name_attribute(self):
-        self.assertTrue(ThingsListView.context_object_name)
-
-    def test_context_object_name(self):
-        context_object_name_expected = 'thing'
-        context_object_name_given = ThingsDetailView.context_object_name
-        self.assertEqual(context_object_name_expected, context_object_name_given)
 
 class TestUserWantToCheckOtherUserThing(TestCase):
 

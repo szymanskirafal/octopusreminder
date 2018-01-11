@@ -11,6 +11,7 @@ from octopus.things import views as things_views
 urlpatterns = [
     #url(r'^$', TemplateView.as_view(template_name='pages/home.html'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
+    url(r'^blog/$', TemplateView.as_view(template_name='pages/blog.html'), name='blog'),
     url(r'^contact/$', TemplateView.as_view(template_name='pages/contact.html'), name='contact'),
     url(r'^howto/$', TemplateView.as_view(template_name='pages/howto.html'), name='howto'),
 
