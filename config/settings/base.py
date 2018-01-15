@@ -61,6 +61,7 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
     'octopus.home',
     'octopus.things',
+    'octopus.howto',
 
 ]
 

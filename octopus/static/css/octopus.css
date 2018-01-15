@@ -12,3 +12,12 @@ p {
 .octopus-circle {
   border-radius: 50%;
 }
+
+.green {
+  background-color: green;
+  
+}
+
+.gray {
+  background-color: gray;
+}

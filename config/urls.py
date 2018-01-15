@@ -25,6 +25,7 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^$', home_views.HomeTemplateView.as_view(), name='home'),
+    url(r'^howto/', include('octopus.howto.urls', namespace='howto')),
     url(r'^things/', include('octopus.things.urls', namespace='things')),
 
 
