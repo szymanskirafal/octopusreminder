@@ -9,9 +9,19 @@ urlpatterns = [
         name='install'
     ),
     url(
+        regex=r'^pay/$',
+        view=views.HowtoPayTemplateView.as_view(),
+        name='pay'
+    ),
+    url(
         regex=r'^signup/$',
         view=views.HowtoSignupTemplateView.as_view(),
         name='signup'
+    ),
+    url(
+        regex=r'^signin/$',
+        view=views.HowtoSigninTemplateView.as_view(),
+        name='signin'
     ),
 
 
