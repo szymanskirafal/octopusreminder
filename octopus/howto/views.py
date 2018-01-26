@@ -12,3 +12,6 @@ class HowtoSignupTemplateView(generic.TemplateView):
 
 class HowtoSigninTemplateView(generic.TemplateView):
     template_name = "howto/signin.html"
+
+class HowtoUseTemplateView(generic.TemplateView):
+    template_name = "howto/use.html"

@@ -4,6 +4,11 @@ from . import views
 
 urlpatterns = [
     url(
+        regex=r'^use/$',
+        view=views.HowtoUseTemplateView.as_view(),
+        name='use'
+    ),
+    url(
         regex=r'^install/$',
         view=views.HowtoInstallTemplateView.as_view(),
         name='install'
