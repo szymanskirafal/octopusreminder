@@ -14,9 +14,9 @@ urlpatterns = [
         name='install'
     ),
     url(
-        regex=r'^pay/$',
-        view=views.HowtoPayTemplateView.as_view(),
-        name='pay'
+        regex=r'^price/$',
+        view=views.HowtoPriceTemplateView.as_view(),
+        name='price'
     ),
     url(
         regex=r'^signup/$',
