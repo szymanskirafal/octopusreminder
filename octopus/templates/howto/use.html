@@ -3,8 +3,122 @@
 {% load static %}
 
 {% block content %}
+<div class="container">
   <h1>How to use the app.</h1>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/u1.png" class="img-fluid" alt="u1">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>Tap the Octopus icon on your smartphone to start the app.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/install2.png" class="img-fluid" alt="u2">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>You can also type "octopusreminder.com" in your web browser on any device.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/u3.png" class="img-fluid" alt="u3">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>The app should start with "New thing" screen to let you write immidiately some important thing you want not to forget about.</p>
+      <p>If it's not then you should sign in or sign up. Maybe you try to use the app on the new device or you forgot to click checkbox icon "Remember Me" when you were login in last time. <a href="{% url 'howto:signin' %}">Here's the details how to sign in </a> or <a href="{% url 'howto:signup' %}">sign up.</a></p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use4.png" class="img-fluid" alt="u4">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>Type the important thing here.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use5.png" class="img-fluid" alt="u5">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>The "Today" checkbox icon is set automaticaly in case the thing you write is super imprtant and should be done today. You can uncheck it if the thing can be done later.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use6.png" class="img-fluid" alt="u6">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>Click Save and don't worry. The app will remember and it will try to remind you about them by sending you an email with list of things few times a day.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use7.png" class="img-fluid" alt="u7">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>You will receive emails few times a day.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use8.png" class="img-fluid" alt="u8">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>The email should look this one.</p>
+      <p>The list of important thing is divided into two parts.  First part - Today.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use9.png" class="img-fluid" alt="u9">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>Second part - Later.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use10.png" class="img-fluid" alt="u10">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>Each thing has an "Edit" link. Click it to edit, change or delete the thing.</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use11.png" class="img-fluid" alt="u11">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>You don't have to wait for emails to see what things you should remeber about. Just open the app, click on the menu icon on top right corner and choose "List".</p>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <img src="/static/images/use12.png" class="img-fluid" alt="u12">
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <p>The list looks almost the same as the list you receive by emails. The only difference is the icon. Click it to edit, change or delete the thing.</p>
+    </div>
+  </div>
+  <hr>
 
-  
+
+</div>
+
+
 
 {% endblock content %}
