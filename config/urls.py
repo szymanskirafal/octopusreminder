@@ -5,6 +5,9 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
+
 from octopus.home import views as home_views
 from octopus.things import views as things_views
 
@@ -27,6 +30,13 @@ urlpatterns = [
     url(r'^$', home_views.HomeTemplateView.as_view(), name='home'),
     url(r'^howto/', include('octopus.howto.urls', namespace='howto')),
     url(r'^things/', include('octopus.things.urls', namespace='things')),
+    url(r'^favicon.ico$',
+        RedirectView.as_view( # the redirecting function
+            url=staticfiles_storage.url('images/favicon.ico'), # converts the static directory + our favicon into a URL
+            # in my case, the result would be http://www.tumblingprogrammer.com/static/img/favicon.ico
+        ),
+        name="favicon" # name of our view
+    ),
 
 
 
