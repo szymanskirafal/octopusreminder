@@ -33,6 +33,7 @@ urlpatterns = [
     # favicon mess
     url(r'^favicon.ico$', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico'),),name="favicon"),
     url(r'^apple-touch-icon.png$', RedirectView.as_view(url=staticfiles_storage.url('images/apple-touch-icon.png'),),name="apple-touch-icon"),
+    url(r'^safari-pinned-tab.svg$', RedirectView.as_view(url=staticfiles_storage.url('images/safari-pinned-tab.svg'),),name="safari-pinned-tab"),
 
 
 
