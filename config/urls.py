@@ -30,13 +30,10 @@ urlpatterns = [
     url(r'^$', home_views.HomeTemplateView.as_view(), name='home'),
     url(r'^howto/', include('octopus.howto.urls', namespace='howto')),
     url(r'^things/', include('octopus.things.urls', namespace='things')),
-    url(r'^favicon.ico$',
-        RedirectView.as_view( # the redirecting function
-            url=staticfiles_storage.url('images/favicon.ico'), # converts the static directory + our favicon into a URL
-            # in my case, the result would be http://www.tumblingprogrammer.com/static/img/favicon.ico
-        ),
-        name="favicon" # name of our view
-    ),
+    # favicon mess
+    url(r'^favicon.ico$', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico'),),name="favicon"),
+    url(r'^apple-touch-icon.png$', RedirectView.as_view(url=staticfiles_storage.url('images/apple-touch-icon.png'),),name="apple-touch-icon"),
+
 
 
 
