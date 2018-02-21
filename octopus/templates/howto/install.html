@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load static %}
 
 {% block content %}
   <h1>How to add web app to the Home screen of your iPhone.</h1>
@@ -43,7 +44,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-sm-12">
-        <img src="{% static 'images/install5.png %}" class="img-fluid" alt="screen5">
+        <img src="{% static 'images/install5.png' %}" class="img-fluid" alt="screen5">
       </div>
       <div class="col-md-4 col-sm-12">
         <p>Here you can change the name to be displayed below the icon, leave it unchanged or delete the name to have just icon without any name below it. Then you should click Add button. </p>
