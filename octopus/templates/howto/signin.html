@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 
-{% load static %}
 
 {% block content %}
   <h1>How to sign in.</h1>
 
   <div class="row">
     <div class="col-md-8 col-sm-12">
-      <img src="/static/images/signup1.png" class="img-fluid" alt="signup1">
+      <img src="{% static 'images/signup1.png' %}" class="img-fluid" alt="signup1">
     </div>
     <div class="col-md-4 col-sm-12">
       <p>Tap Safari icon. Write octopusreminder.com in the search bar and click Go button. The app should start. Then click the menu icon on top right corner.</p>
@@ -16,7 +15,7 @@
   <hr>
   <div class="row">
     <div class="col-md-8 col-sm-12">
-      <img src="/static/images/si2.png" class="img-fluid" alt="signup2">
+      <img src="{% static 'images/si2.png' %}" class="img-fluid" alt="signup2">
     </div>
     <div class="col-md-4 col-sm-12">
       <p>Choose Sign In option.</p>
@@ -25,7 +24,7 @@
   <hr>
   <div class="row">
     <div class="col-md-8 col-sm-12">
-      <img src="/static/images/si3.png" class="img-fluid" alt="signup3">
+      <img src="{% static 'images/si3.png' %}" class="img-fluid" alt="signup3">
     </div>
     <div class="col-md-4 col-sm-12">
       <p>The Sign In screen should appear.</p>
@@ -35,7 +34,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-sm-12">
-        <img src="/static/images/si4.png" class="img-fluid" alt="signup4">
+        <img src="{% static 'images/si4.png' %}" class="img-fluid" alt="signup4">
       </div>
       <div class="col-md-4 col-sm-12">
         <p>You can type your username and password in appropriate fields.</p>
@@ -45,7 +44,7 @@
   <hr>
   <div class="row">
     <div class="col-md-8 col-sm-12">
-      <img src="/static/images/si5.png" class="img-fluid" alt="signup4">
+      <img src="{% static 'images/si5.png' %}" class="img-fluid" alt="signup4">
     </div>
     <div class="col-md-4 col-sm-12">
       <p>It'd be good to click Remeber Me checkbox icon, so you won't have to sign in next time. The app will remember you. Tap Sign In blue button to finish the process.</p>
@@ -55,7 +54,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-sm-12">
-        <img src="/static/images/si6.png" class="img-fluid" alt="signup5">
+        <img src="{% static 'images/si6.png' %}" class="img-fluid" alt="signup5">
       </div>
       <div class="col-md-4 col-sm-12">
         <p>Successfully signed as ... statement should appear and you can use the app.</p>
