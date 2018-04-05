@@ -10,7 +10,7 @@ class User(AbstractUser):
 
     # First Name and Last Name do not cover name patterns
     # around the globe.
-    created = models.DateTimeField(auto_now_add = True)
+    created = models.DateField(auto_now_add = True)
     name = models.CharField(_('Name of User'), blank=True, max_length=255)
     paid = models.BooleanField(default=False)
 

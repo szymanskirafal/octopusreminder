@@ -29,6 +29,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     url(r'^$', home_views.HomeTemplateView.as_view(), name='home'),
     url(r'^howto/', include('octopus.howto.urls', namespace='howto')),
+    url(r'^pay/$', TemplateView.as_view(template_name='pages/pay.html'), name='pay'),
     url(r'^things/', include('octopus.things.urls', namespace='things')),
     # favicon mess
     url(r'^favicon.ico$', RedirectView.as_view(url=staticfiles_storage.url('images/favicon.ico'),),name="favicon"),

@@ -7,10 +7,10 @@ from django.views import generic
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from datetime import date
+from datetime import date, timedelta
 
 from .forms import ThingForm
-from .models import Thing
+from .models import DaysOfFreeUsage, Thing
 
 class UserLoginRequiredAndPaidMixin(LoginRequiredMixin):
 
@@ -19,10 +19,18 @@ class UserLoginRequiredAndPaidMixin(LoginRequiredMixin):
             return self.handle_no_permission()
         if not request.user.paid:
             when_user_signed_up = request.user.created
+            print('----------- when_user_signed_up: ', when_user_signed_up)
             days_to_use_the_app_for_free = timedelta(days=1)
+            print('----------- days_to_use_the_app_for_free: ', days_to_use_the_app_for_free)
             today = date.today()
-            if today - when_user_signed_up > days_to_use_the_app_for_free:
-                return redirect('home')
+            print('----------- today: ', today)
+            days = DaysOfFreeUsage.objects.get(pk=1)
+            days = days.days
+            print('------- days: ', days)
+            day_in_the_future = today + timedelta(days=days)
+            print('------------ day_in_the_future will be: ', day_in_the_future)
+            if day_in_the_future - when_user_signed_up > days_to_use_the_app_for_free:
+                return redirect('pay')
         return super().dispatch(request, *args, **kwargs)
 
 

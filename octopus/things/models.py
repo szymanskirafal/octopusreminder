@@ -23,3 +23,6 @@ class Thing(TimeStampedModel):
 
     class Meta:
         ordering = ['-created']
+
+class DaysOfFreeUsage(models.Model):
+    days = models.PositiveSmallIntegerField()
