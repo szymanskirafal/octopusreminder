@@ -7,13 +7,27 @@ from django.views import generic
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from datetime import date
 
 from .forms import ThingForm
 from .models import Thing
 
+class UserLoginRequiredAndPaidMixin(LoginRequiredMixin):
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
+        if not request.user.paid:
+            when_user_signed_up = request.user.created
+            days_to_use_the_app_for_free = timedelta(days=1)
+            today = date.today()
+            if today - when_user_signed_up > days_to_use_the_app_for_free:
+                return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
 
 
-class ThingsNewCreateView(LoginRequiredMixin, generic.CreateView):
+
+class ThingsNewCreateView(UserLoginRequiredAndPaidMixin, generic.CreateView):
     model = Thing
     form_class = ThingForm
     template_name = 'things/new.html'
@@ -31,10 +45,10 @@ class QueryCreatedByCurrentUserMixin(object):
         queryset = Thing.objects.all().filter(created_by = current_user)
         return queryset
 
-class ThingsListView(LoginRequiredMixin, QueryCreatedByCurrentUserMixin, generic.ListView):
+class ThingsListView(UserLoginRequiredAndPaidMixin, QueryCreatedByCurrentUserMixin, generic.ListView):
     model = Thing
     template_name = 'things/list.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         queryset = self.get_queryset()
@@ -44,13 +58,13 @@ class ThingsListView(LoginRequiredMixin, QueryCreatedByCurrentUserMixin, generic
 
 
 
-class ThingsDetailView(LoginRequiredMixin, QueryCreatedByCurrentUserMixin, generic.DetailView):
+class ThingsDetailView(UserLoginRequiredAndPaidMixin, QueryCreatedByCurrentUserMixin, generic.DetailView):
     model = Thing
     template_name = 'things/detail.html'
     context_object_name = 'thing'
 
 
-class ThingsEditUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
+class ThingsEditUpdateView(UserLoginRequiredAndPaidMixin, generic.edit.UpdateView):
     model = Thing
     form_class = ThingForm
     template_name = 'things/edit.html'
@@ -60,7 +74,7 @@ class ThingsEditUpdateView(LoginRequiredMixin, generic.edit.UpdateView):
 class ThingsThingSavedTemplateView(generic.TemplateView):
     template_name = 'things/thing-saved.html'
 
-class ThingsDeleteView(LoginRequiredMixin, generic.edit.DeleteView):
+class ThingsDeleteView(UserLoginRequiredAndPaidMixin, generic.edit.DeleteView):
     model = Thing
     context_object_name = 'thing'
     success_url = reverse_lazy('things:list')
