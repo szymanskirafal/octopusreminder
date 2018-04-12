@@ -52,6 +52,7 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',  # registration
     'django_celery_beat',
     'django_celery_results',
+    'paypal.standard.ipn',
 ]
 
 # Apps specific for this project go here.
@@ -296,3 +297,5 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+# PayPal
+PAYPAL_TEST = True

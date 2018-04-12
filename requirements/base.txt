@@ -22,6 +22,7 @@ django-debug-toolbar==1.8
 django-environ==0.4.4
 django-extensions==1.9.1
 django-model-utils==3.0.0
+django-paypal
 django-redis==4.8.0
 django-test-plus==1.0.18
 docutils==0.14
