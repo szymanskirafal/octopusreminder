@@ -298,4 +298,5 @@ ADMIN_URL = r'^admin/'
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
 # PayPal
+PAYPAL_RECEIVER_EMAIL = 'rafal@mvpcheap.com'
 PAYPAL_TEST = True
