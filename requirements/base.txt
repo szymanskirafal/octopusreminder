@@ -35,7 +35,7 @@ ipdb==0.10.3
 ipython==6.2.0
 ipython-genutils==0.2.0
 jedi==0.11.0
-Jinja2==2.9.6
+Jinja2==2.11.3
 -e git+https://github.com/celery/kombu.git@9f2fd403ef9efe8d41265baf0d7218cb6d1f3118#egg=kombu
 MarkupSafe==1.0
 oauthlib==2.0.4
