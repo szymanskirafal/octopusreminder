@@ -6,7 +6,7 @@ awesome-slugify==1.6.5
 Babel==2.5.1
 -e git+https://github.com/celery/billiard.git@7dcbf6125ba60d103571228aec2aa7acb5ce193c#egg=billiard
 celery==4.1.0
-certifi==2017.7.27.1
+certifi==2022.12.7
 cffi==1.11.0
 chardet==3.0.4
 coverage==4.4.1
